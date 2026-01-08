@@ -1,15 +1,24 @@
 package com.codexdei.springboot.jpa.springboot_jpa.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "persons")
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
     private String lastname;
+
+    @Column(name = "programming_language")
     private String programmingLanguage;
 
     
@@ -51,6 +60,14 @@ public class Person {
     public void setProgrammingLanguage(String programmingLanguage) {
         this.programmingLanguage = programmingLanguage;
     }
+
+    @Override
+    public String toString() {
+        return "[id=" + id + ", name=" + name + ", lastname=" + lastname + ", programmingLanguage="
+                + programmingLanguage + "]";
+    }
+
+    
 
     
 }
