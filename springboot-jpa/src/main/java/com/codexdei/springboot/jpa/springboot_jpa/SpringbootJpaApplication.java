@@ -30,8 +30,9 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 /* 		list();
 		findOne();
-		create(); */
-		update();
+		create(); 
+		update(); */
+		delete();
 	}
 
 	// @Transactional envuelve todo el metodo en una transaccion, es decir todas
@@ -105,7 +106,7 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 		Scanner scanner = new Scanner(System.in);
 
-		list();
+		repository.findAll().forEach(System.out::println);
 		System.out.println("Enter the ID to search:");
 		Long id = scanner.nextLong();
 		//limpiar buffer
@@ -163,6 +164,23 @@ public class SpringbootJpaApplication implements CommandLineRunner {
 
 			System.out.println("The ID entered does not exist");
 		}
+		scanner.close();
+	}
+
+	@Transactional
+	public void delete(){
+
+		Scanner scanner = new Scanner(System.in);
+
+		repository.findAll().forEach(System.out::println);
+
+		System.out.println("Enter the ID to delete:");
+		Long id = scanner.nextLong();
+		repository.deleteById(id);
+
+		repository.findAll().forEach(System.out::println);
+
+		scanner.close();
 	}
 
 }
